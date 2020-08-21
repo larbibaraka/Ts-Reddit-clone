@@ -21,7 +21,8 @@
     "@mikro-orm/core": "^4.0.0-alpha.0",
     "@mikro-orm/migrations": "^4.0.0-alpha.0",
     "@mikro-orm/postgresql": "^4.0.0-alpha.0",
-    "pg": "^8.3.2"
+    "pg": "^8.3.2",
+    "ts-node": "^9.0.0"
   },
   "mikro-orm": {
     "useTsNode": true,
