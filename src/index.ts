@@ -21,6 +21,8 @@ const main = async () => {
       validate: false,
     }),
   });
+  // Create graphql end point on express
+  apolloServer.applyMiddleware({ app });
   app.listen(4000, () => {
     console.log("Server is Running on localhost:4000");
   });
