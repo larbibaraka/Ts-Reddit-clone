@@ -31,19 +31,34 @@ class FieldError {
 
 @Resolver()
 export class UserResolver {
-  @Mutation(() => User)
+  @Mutation(() => UserResponse)
   async register(
     @Arg("username", () => String) username: string,
     @Arg("password", () => String) password: string,
     @Ctx() { em }: MyContext
-  ): Promise<User> {
+  ): Promise<UserResponse> {
+    console.log('ddldlddl  hello Q')
     const hashedPassword = await argon2.hash(password);
     const user = await em.create(User, {
       username: username,
       password: hashedPassword,
     });
-    await em.persistAndFlush(user);
-    return user;
+    try {
+      await em.persistAndFlush(user);
+
+    }catch(err){
+      if(err.code === "23505")  {
+        return {
+          errors  : [
+            {
+              field : "username",
+              message: "username Already been taken"
+            }
+          ]
+        }
+      }
+    }
+    return {user};
   }
 
   @Mutation(() => UserResponse)
