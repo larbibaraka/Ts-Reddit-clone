@@ -1,4 +1,5 @@
 import { Post } from "./entities/Post";
+import { User } from './entities/User';
 import { __prod__ } from "./constants";
 import { MikroORM } from "@mikro-orm/core";
 import path from "path";
@@ -8,7 +9,7 @@ export default {
     pattern: /^[\w-]+\d+\.[tj]s$/, // regex pattern for the migration files
   },
   type: "postgresql",
-  entities: [Post],
+  entities: [Post, User],
   dbName: "reddit_clone",
   user: "postgres",
   password: "admin",
